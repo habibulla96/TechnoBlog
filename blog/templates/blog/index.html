@@ -5,18 +5,19 @@
 
 {% block content %}
 
-<section class="bg-text-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="bg-text">
-                    <h3>Classic BLOG Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<section class="bg-text-area">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--                <div class="bg-text">-->
+<!--                    <h3>Classic BLOG Design</h3>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
 
 <section class="blog-post-area">
     <div class="container">
@@ -38,7 +39,7 @@
                     </div>
 
                     {% for post in posts %}
-                    <div class="col-md-3">
+                    <div class="col-lg-3">
                         <div class="single-post">
 
                             {% if post.photo %}
@@ -48,9 +49,9 @@
                             {% endif %}
 
                             <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                            <h4><span>Posted By: <span class="author-name">{{ post.author }}</span></span>
+                            <h4><span>Автор: <span class="author-name">{{ post.author }}</span></span>
                             </h4>
-                            {{ post.content|truncatewords_html:20|safe }}
+                            {{ post.content|truncatewords_html:10|safe }}
                             <h4><span>{{ post.created_at|date:"d.m.Y" }}</span></h4>
                         </div>
                     </div>
