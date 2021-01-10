@@ -1,0 +1,15 @@
+{% load menu %}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="logo">
+                    <h3><a href="{% url 'home' %}">Techno Blog</a></h3>
+                </div>
+            </div>
+            <div class="col-md-10">
+                {% show_menu %}
+            </div>
+        </div>
+    </div>
+</header>
