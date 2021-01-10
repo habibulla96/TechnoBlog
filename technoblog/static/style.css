@@ -521,8 +521,6 @@ section.blog-post-area h4 span.author-name {
     bottom: 0;
 }
 
-
-}
 .single-blog-area .commententries .author-name h5 a {
     font-family: Geometria;
     font-size: 21px;
@@ -749,4 +747,9 @@ section.blog-post-area h4 span.author-name {
     font-family: Geometria;
     font-size: 15px;
     font-weight: 500;
+}
+
+.grid .portfolio-item img{
+    width: 100px;
+    height: auto;
 }
