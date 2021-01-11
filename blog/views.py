@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
+
+from .forms import PostUserForm
 from .models import *
 from django.db.models import F
 
@@ -71,3 +74,31 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['s'] = f"s-{self.request.GET.get('s')}&"
         return context
+
+
+def add_post(request):
+    if request.method == "POST":
+        post_form = PostUserForm(request.POST)
+        if post_form.is_valid():
+            post = post_form.save()
+            return redirect(post.get_absolute_url())
+    else:
+        post_form = PostUserForm()
+    return render(request, 'add-post.html', locals())
+
+
+def update_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    post_form = PostUserForm(request.POST or None, instance=post)
+    if post_form.is_valid():
+        post = post_form.save()
+    return render(request, 'update-post.html', locals())
+
+
+def delete_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if request.method == "POST":
+        post.delete()
+        messages.add_message(request, messages.SUCCESS, 'Пост удален.')
+        return redirect('home')
+    return render(request, 'delete-recipe.html')
