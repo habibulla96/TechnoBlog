@@ -1,21 +1,55 @@
 {% load menu %}
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="footer-bg">
-                    <div class="row">
-                        <div class="col-md-9">
-                            {% show_menu 'footer-menu' %}
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-icon">
-                                <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+<br><br><br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="justify-content: center;">
+    <a class="navbar-brand" href="{% url 'home' %}" style="margin-right: 150px;">Techno Blog</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="{{ menu_class }}">
+            <ul class="navbar-nav mr-auto" style="justify-content: space-around;">
+                {% for item in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                </li>
+                {% endfor %}
+                {% show_menu %}
+            </ul>
         </div>
     </div>
-</footer>
+
+    <ul class="navbar-nav mr-auto" style="justify-content: space-around; padding-top: 12px;">
+        <li style="margin-left: 200px;"><p>Copyright by Anonymous &#169;</p></li>
+        <li style="margin-left: 20px;"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li style="margin-left: 20px;"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        <li style="margin-left: 20px;"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        <li style="margin-left: 20px;"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+    </ul>
+</nav>
+
+
+
+
+
+
+
+<!--{% load menu %}-->
+<!--<footer class="footer">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--                <div class="footer-bg">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-9">-->
+<!--                            {% show_menu 'footer-menu' %}-->
+<!--                        </div>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <div class="footer-icon">-->
+<!--                                <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->

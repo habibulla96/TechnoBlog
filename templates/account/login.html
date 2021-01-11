@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="alert alert-dark" style="font-size: xx-large;">
+  Форма входа
+</div>
+
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Войти</button>
+</form>
+<br><br>
+{% endblock %}

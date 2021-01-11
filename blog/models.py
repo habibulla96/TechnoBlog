@@ -1,6 +1,11 @@
 from django.db import models
 from django.urls import reverse
 
+from account.models import User
+
+from django.db.models.signals import pre_save
+from technoblog.utils import unique_slug_generator # import from main folder
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -16,6 +21,14 @@ class Category(models.Model):
         verbose_name = 'Категория(ю)'
         verbose_name_plural = 'Категории'
         ordering = ['title']
+
+def slug_generator(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+        # i added in main folder of proj new file which named utils.py, there writed func slug generator
+
+
+pre_save.connect(slug_generator, sender=Category)
 
 
 class Tag(models.Model):
@@ -34,10 +47,19 @@ class Tag(models.Model):
         ordering = ['title']
 
 
+def slug_generator(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+        # i added in main folder of proj new file which named utils.py, there writed func slug generator
+
+
+pre_save.connect(slug_generator, sender=Tag)
+
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликовано')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
@@ -55,3 +77,11 @@ class Post(models.Model):
         verbose_name = 'Статья(ю)'
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at']
+
+
+def slug_generator(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(slug_generator, sender=Post)

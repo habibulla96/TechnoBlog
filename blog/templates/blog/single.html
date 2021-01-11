@@ -133,14 +133,16 @@
                         {% get_tags %}
 
                         <div class="newsletter">
-                            <h2 class="sidebar-title">Subscribe To oUR nEWSLETTER</h2>
+                            <h2 class="sidebar-title">E-mail Рассылка</h2>
                             <form action="#" method="post">
-                                <input type="email" name="" id="" placeholder="Email">
+                                <input type="email" name="" placeholder="Email">
                                 <input type="submit" value="Subscribe">
                             </form>
                         </div>
                     </div>
                 </div>
+                <div><a href="{% url 'update-post' post.slug %}">Изменить</a></div>
+                <div><a href="{% url 'delete-post' post.slug %}">Удалить</a></div>
             </div>
         </div>
     </div>
